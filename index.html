@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G&F - Plataforma de Cursos Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2><i class="fas fa-graduation-cap"></i> G&F</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#cursos" class="nav-link">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sobre" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contato" class="nav-link">Contato</a>
+                    </li>
+                    <li class="nav-item" id="admin-nav-item" style="display: none;">
+                        <a href="#admin" class="nav-link">Administrador</a>
+                    </li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="cart-btn" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <button class="login-btn" id="login-btn">
+                        <i class="fas fa-user"></i> Login
+                    </button>
+                    <div class="user-menu" id="user-menu" style="display: none;">
+                        <span class="username" id="username"></span>
+                        <button class="profile-btn" id="profile-btn">Perfil</button>
+                        <button class="logout-btn" id="logout-btn">Sair</button>
+                    </div>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Aprenda Novas Habilidades Online</h1>
+                <p class="hero-subtitle">Descubra cursos de alta qualidade com instrutores especialistas e transforme sua carreira</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Explorar Cursos</button>
+                    <button class="btn btn-secondary">Saiba Mais</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-laptop-code hero-icon"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="cursos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Cursos</h2>
+                <p class="section-subtitle">Escolha entre mais de 100 cursos em diversas áreas</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="programacao">Programação</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="negocios">Negócios</button>
+            </div>
+
+            <div class="courses-grid" id="courses-grid">
+                <!-- Cursos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section class="admin" id="admin" style="display: none;">
+        <div class="container">
+            <div class="admin-header">
+                <h2 class="admin-title">Painel de Administrador</h2>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="total-users">0</div>
+                        <div class="stat-card-label">Total de Usuários</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="active-users">0</div>
+                        <div class="stat-card-label">Usuários Ativos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="total-courses">0</div>
+                        <div class="stat-card-label">Total de Cursos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="total-revenue">R$ 0,00</div>
+                        <div class="stat-card-label">Receita Total</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="usuarios">Usuários</button>
+                <button class="admin-tab-btn" data-tab="cursos">Cursos</button>
+                <button class="admin-tab-btn" data-tab="vendas">Vendas</button>
+                <button class="admin-tab-btn" data-tab="sessoes">Sessões</button>
+            </div>
+
+            <!-- Aba Usuários -->
+            <div class="admin-tab-content active" id="tab-usuarios">
+                <div class="admin-content-header">
+                    <h3>Gerenciar Usuários</h3>
+                    <button class="btn btn-primary" id="add-user-btn">+ Novo Usuário</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Data Cadastro</th>
+                                <th>Último Login</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Dados carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Aba Cursos -->
+            <div class="admin-tab-content" id="tab-cursos">
+                <div class="admin-content-header">
+                    <h3>Gerenciar Cursos</h3>
+                    <button class="btn btn-primary" id="add-course-btn">+ Novo Curso</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Instrutor</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Alunos</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courses-table-body">
+                            <!-- Dados carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Aba Vendas -->
+            <div class="admin-tab-content" id="tab-vendas">
+                <div class="admin-content-header">
+                    <h3>Relatório de Vendas</h3>
+                    <button class="btn btn-secondary" id="export-sales-btn">Exportar Relatório</button>
+                </div>
+                <div class="sales-stats">
+                    <div class="sales-stat">
+                        <h4>Receita do Mês</h4>
+                        <p class="sales-value" id="monthly-revenue">R$ 0,00</p>
+                    </div>
+                    <div class="sales-stat">
+                        <h4>Total de Vendas</h4>
+                        <p class="sales-value" id="total-sales">0</p>
+                    </div>
+                    <div class="sales-stat">
+                        <h4>Ticket Médio</h4>
+                        <p class="sales-value" id="average-ticket">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Curso</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-table-body">
+                            <!-- Dados carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Aba Sessões -->
+            <div class="admin-tab-content" id="tab-sessoes">
+                <div class="admin-content-header">
+                    <h3>Sessões Ativas</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID Sessão</th>
+                                <th>Usuário</th>
+                                <th>Data Criação</th>
+                                <th>Expira em</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sessions-table-body">
+                            <!-- Dados carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->    <section class=\"about\" id=\"sobre\"> 
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Por que escolher a G&F?</h2>
+                    <p>Nossa plataforma oferece a melhor experiência de aprendizado online com cursos criados por especialistas de Brasília e de todo o Brasil.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certificados reconhecidos</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Comunidade ativa</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-headset"></i>
+                            <span>Suporte 24/7</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Acesso mobile</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>50,000+</h3>
+                        <p>Estudantes</p>
+                    </div>
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Cursos</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100+</h3>
+                        <p>Instrutores</p>
+                    </div>
+                    <div class="stat">
+                        <h3>95%</h3>
+                        <p>Satisfação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> G&F</h3>
+                    <p>Transformando vidas através da educação online de qualidade em Brasília e todo o Brasil.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Cursos</h4>
+                    <ul>
+                        <li><a href="#">Programação</a></li>
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Negócios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contato@gf.com</p>
+                        <p><i class="fas fa-phone"></i> (61) 3456-7890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Brasília, DF</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 G&F. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Login</h3>
+                <span class="close" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group" id="name-group" style="display: none;">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="form-group" id="confirm-password-group" style="display: none;">
+                        <label for="confirm-password">Confirmar Senha:</label>
+                        <input type="password" id="confirm-password" name="confirm-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="auth-submit">Entrar</button>
+                </form>
+                <div class="auth-switch">
+                    <p id="auth-switch-text">Não tem uma conta? <a href="#" id="auth-switch-link">Cadastre-se</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Carrinho de Compras</h3>
+                <span class="close" id="close-cart-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items">
+                    <p class="empty-cart">Seu carrinho está vazio</p>
+                </div>
+                <div class="cart-total" id="cart-total" style="display: none;">
+                    <h4>Total: R$ <span id="total-amount">0,00</span></h4>
+                    <button class="btn btn-primary" id="checkout-btn">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Modal -->
+    <div class="modal" id="course-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="course-modal-title">Detalhes do Curso</h3>
+                <span class="close" id="close-course-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="course-modal-body">
+                <!-- Conteúdo será carregado via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- User Management Modal -->
+    <div class="modal" id="user-management-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title">Novo Usuário</h3>
+                <span class="close" id="close-user-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="user-management-form">
+                    <div class="form-group">
+                        <label for="admin-user-name">Nome:</label>
+                        <input type="text" id="admin-user-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-user-email">E-mail:</label>
+                        <input type="email" id="admin-user-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-user-status">Status:</label>
+                        <select id="admin-user-status" name="status" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                            <option value="active">Ativo</option>
+                            <option value="inactive">Inativo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Management Modal -->
+    <div class="modal" id="course-management-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="course-modal-title">Novo Curso</h3>
+                <span class="close" id="close-course-management-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="course-management-form">
+                    <div class="form-group">
+                        <label for="admin-course-title">Título:</label>
+                        <input type="text" id="admin-course-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-course-instructor">Instrutor:</label>
+                        <input type="text" id="admin-course-instructor" name="instructor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-course-category">Categoria:</label>
+                        <select id="admin-course-category" name="category" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                            <option value="programacao">Programação</option>
+                            <option value="design">Design</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="negocios">Negócios</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-course-price">Preço:</label>
+                        <input type="number" id="admin-course-price" name="price" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Escolha o Método de Pagamento</h3>
+                <span class="close" id="close-payment-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="payment-methods">
+                    <div class="payment-method-card" onclick="selectPaymentMethod('pix')">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h4>Pix</h4>
+                        <p>Pagamento instantâneo via Pix</p>
+                    </div>
+                    <div class="payment-method-card" onclick="selectPaymentMethod('cartao')">
+                        <div class="payment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>Cartão de Crédito</h4>
+                        <p>Parcelado em até 12x</p>
+                    </div>
+                </div>
+
+                <!-- Formulário PIX -->
+                <form id="pix-form" style="display: none;" class="payment-form">
+                    <div class="pix-info">
+                        <p class="info-title">Escaneie o QR Code ou copie a chave Pix</p>
+                        <div class="qr-code">
+                            <div style="background: white; padding: 1rem; border-radius: 10px; border: 2px solid #ddd; text-align: center;">
+                                <div id="qrcode-container" style="display: flex; align-items: center; justify-content: center; height: 250px;">
+                                    <p style="color: #999;">QR Code gerado automaticamente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pix-key">
+                            <label>Chave Pix (CPF):</label>
+                            <div class="pix-key-display">
+                                <span id="pix-key-value">111.222.333-44</span>
+                                <button type="button" class="copy-btn" onclick="copyPixKey()">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="payment-value">
+                            <p>Valor a pagar:</p>
+                            <h3 id="pix-amount">R$ 0,00</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="pix-confirm">
+                                <input type="checkbox" id="pix-confirm" required>
+                                Confirmar que realizei o pagamento via Pix
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-check"></i> Confirmar Pagamento
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Formulário Cartão -->
+                <form id="card-form" style="display: none;" class="payment-form">
+                    <div class="card-info">
+                        <div class="form-group">
+                            <label for="card-holder">Nome do Titular:</label>
+                            <input type="text" id="card-holder" name="holder" required placeholder="João da Silva">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number">Número do Cartão:</label>
+                            <input type="text" id="card-number" name="number" required placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="card-validity">Validade (MM/AA):</label>
+                                <input type="text" id="card-validity" name="validity" required placeholder="12/25" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvv">CVV:</label>
+                                <input type="text" id="card-cvv" name="cvv" required placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-installments">Parcelamento:</label>
+                            <select id="card-installments" name="installments" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px;">
+                                <option value="1">À vista - R$ 0,00 de juros</option>
+                                <option value="2">2x - R$ 0,00 de juros</option>
+                                <option value="3">3x - R$ 0,00 de juros</option>
+                                <option value="4">4x - R$ 5,00 de juros</option>
+                                <option value="5">5x - R$ 10,00 de juros</option>
+                                <option value="6">6x - R$ 15,00 de juros</option>
+                                <option value="12">12x - R$ 30,00 de juros</option>
+                            </select>
+                        </div>
+                        <div class="payment-value">
+                            <p>Valor total:</p>
+                            <h3 id="card-amount">R$ 0,00</h3>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-lock"></i> Pagar com Cartão
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Meu Perfil</h3>
+                <span class="close" id="close-profile-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-name">Nome:</label>
+                        <input type="text" id="profile-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">E-mail:</label>
+                        <input type="email" id="profile-email" name="email" readonly style="background: #f5f5f5;">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Telefone:</label>
+                        <input type="tel" id="profile-phone" name="phone" placeholder="(61) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-city">Cidade:</label>
+                        <input type="text" id="profile-city" name="city" value="Brasília">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-state">Estado:</label>
+                        <input type="text" id="profile-state" name="state" value="DF" maxlength="2">
+                    </div>
+                    <div class="profile-stats">
+                        <h4>Estatísticas</h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" id="enrolled-count">0</span>
+                                <span class="stat-label">Cursos Inscritos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="completed-count">0</span>
+                                <span class="stat-label">Concluídos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
